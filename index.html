@@ -1,722 +1,619 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>传奇 · 再续玛法大陆</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;700;900&display=swap');
+
+  :root {
+    --gold: #f0c040;
+    --gold-dark: #a07820;
+    --red: #c0392b;
+    --red-glow: #e74c3c;
+    --bg-dark: #0a0a0f;
+    --bg-card: #111118;
+    --text: #e8e0d0;
+    --border: #2a2a35;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── Particles ── */
+  #particles {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; pointer-events: none;
+  }
+  .particle {
+    position: absolute; width: 3px; height: 3px;
+    background: var(--gold); border-radius: 50%;
+    animation: floatUp linear infinite; opacity: 0;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+    10%  { opacity: 0.8; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 60px;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(240,192,64,0.15);
+    transition: background 0.3s;
+  }
+  nav.scrolled { background: rgba(10,10,15,0.97); }
+  .logo {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 28px; color: var(--gold);
+    text-shadow: 0 0 20px rgba(240,192,64,0.5);
+    letter-spacing: 4px;
+  }
+  .logo em { color: var(--red-glow); font-style: normal; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--text); text-decoration: none; font-size: 14px;
+    letter-spacing: 2px; transition: color 0.3s; position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--gold); transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .btn-nav {
+    padding: 8px 24px; border: 1px solid var(--gold);
+    color: var(--gold); border-radius: 4px; font-size: 13px;
+    text-decoration: none; letter-spacing: 2px;
+    transition: all 0.3s;
+  }
+  .btn-nav:hover { background: var(--gold); color: var(--bg-dark); }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative; height: 100vh; min-height: 700px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1920&q=80') center/cover no-repeat;
+    filter: brightness(0.35) saturate(1.2);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(10,10,15,0.8) 100%),
+                linear-gradient(180deg, rgba(10,10,15,0.2) 0%, rgba(10,10,15,0.9) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2; text-align: center;
+    max-width: 900px; padding: 0 24px;
+  }
+  .hero-badge {
+    display: inline-block; padding: 6px 20px;
+    border: 1px solid rgba(240,192,64,0.4);
+    border-radius: 20px; font-size: 12px; letter-spacing: 4px;
+    color: var(--gold); margin-bottom: 24px;
+    animation: fadeInDown 0.8s ease;
+  }
+  .hero-title {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: clamp(72px, 12vw, 140px);
+    color: var(--gold);
+    text-shadow: 0 0 40px rgba(240,192,64,0.4), 0 4px 0 var(--gold-dark);
+    line-height: 1; margin-bottom: 16px;
+    animation: fadeInUp 0.8s ease 0.2s both;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: rgba(232,224,208,0.7);
+    letter-spacing: 8px; margin-bottom: 12px;
+    animation: fadeInUp 0.8s ease 0.4s both;
+  }
+  .hero-desc {
+    font-size: 15px; color: rgba(232,224,208,0.5);
+    letter-spacing: 2px; margin-bottom: 48px;
+    animation: fadeInUp 0.8s ease 0.5s both;
+  }
+  .hero-btns {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease 0.6s both;
+  }
+  .btn-primary {
+    padding: 16px 48px; background: linear-gradient(135deg, var(--red) 0%, #e74c3c 100%);
+    color: #fff; border: none; border-radius: 6px; font-size: 16px;
+    letter-spacing: 4px; cursor: pointer;
+    box-shadow: 0 4px 24px rgba(192,57,43,0.5);
+    transition: all 0.3s; text-decoration: none;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(192,57,43,0.7);
+  }
+  .btn-ghost {
+    padding: 16px 48px; background: transparent;
+    color: var(--gold); border: 1px solid var(--gold);
+    border-radius: 6px; font-size: 16px; letter-spacing: 4px;
+    cursor: pointer; transition: all 0.3s; text-decoration: none;
+  }
+  .btn-ghost:hover { background: rgba(240,192,64,0.1); transform: translateY(-3px); }
+
+  .scroll-hint {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    z-index: 2; text-align: center; color: rgba(240,192,64,0.5);
+    font-size: 12px; letter-spacing: 3px; animation: bounce 2s infinite;
+  }
+  .scroll-hint::after {
+    content: ''; display: block; width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(240,192,64,0.5), transparent);
+    margin: 10px auto 0;
+  }
+
+  /* ── Section common ── */
+  section { position: relative; z-index: 1; }
+  .section-title {
+    text-align: center; margin-bottom: 64px;
+  }
+  .section-tag {
+    font-size: 12px; letter-spacing: 4px; color: var(--gold);
+    margin-bottom: 12px; display: block;
+  }
+  .section-title h2 {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: clamp(36px, 5vw, 56px);
+    color: #fff; letter-spacing: 6px;
+  }
+  .section-title p {
+    color: rgba(232,224,208,0.5); margin-top: 12px;
+    font-size: 14px; letter-spacing: 2px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── Features ── */
+  .features { padding: 120px 0; background: var(--bg-dark); }
+  .feat-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .feat-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 40px 32px;
+    text-align: center; transition: all 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .feat-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .feat-card:hover { border-color: rgba(240,192,64,0.3); transform: translateY(-6px); }
+  .feat-card:hover::before { opacity: 1; }
+  .feat-icon {
+    width: 64px; height: 64px; margin: 0 auto 20px;
+    background: linear-gradient(135deg, rgba(240,192,64,0.15), rgba(240,192,64,0.05));
+    border-radius: 16px; display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+  }
+  .feat-card h3 { font-size: 18px; margin-bottom: 12px; color: #fff; letter-spacing: 2px; }
+  .feat-card p { font-size: 14px; color: rgba(232,224,208,0.5); line-height: 1.8; }
+
+  /* ── Showcase ── */
+  .showcase { padding: 120px 0; background: linear-gradient(180deg, var(--bg-dark) 0%, #0d0d14 50%, var(--bg-dark) 100%); }
+  .show-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .show-card {
+    position: relative; border-radius: 16px; overflow: hidden;
+    aspect-ratio: 16/9; cursor: pointer;
+    transition: transform 0.4s;
+  }
+  .show-card:hover { transform: scale(1.02); }
+  .show-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.6) saturate(1.1);
+    transition: filter 0.4s;
+  }
+  .show-card:hover img { filter: brightness(0.4) saturate(1.3); }
+  .show-card-info {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 32px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  }
+  .show-card-info h3 {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 24px; color: var(--gold); margin-bottom: 6px;
+  }
+  .show-card-info p { font-size: 13px; color: rgba(232,224,208,0.6); }
+  .show-card-tag {
+    position: absolute; top: 20px; right: 20px;
+    padding: 4px 12px; background: var(--red);
+    border-radius: 4px; font-size: 12px; color: #fff; letter-spacing: 2px;
+  }
+
+  /* ── Classes ── */
+  .classes { padding: 120px 0; background: var(--bg-dark); }
+  .class-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  }
+  .class-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    transition: all 0.4s; cursor: pointer;
+  }
+  .class-card:hover { transform: translateY(-8px); border-color: rgba(240,192,64,0.3); }
+  .class-card img {
+    width: 100%; height: 220px; object-fit: cover;
+    filter: saturate(0.8);
+    transition: filter 0.4s;
+  }
+  .class-card:hover img { filter: saturate(1.1); }
+  .class-info { padding: 20px; }
+  .class-info h3 {
+    font-size: 18px; color: var(--gold); margin-bottom: 8px;
+    letter-spacing: 3px;
+  }
+  .class-info p { font-size: 13px; color: rgba(232,224,208,0.5); line-height: 1.7; }
+
+  /* ── Stats ── */
+  .stats { padding: 100px 0; background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+    text-align: center;
+  }
+  .stat-item h3 {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 56px; color: var(--gold);
+    text-shadow: 0 0 30px rgba(240,192,64,0.3);
+    line-height: 1;
+  }
+  .stat-item p { font-size: 13px; color: rgba(232,224,208,0.5); letter-spacing: 3px; margin-top: 8px; }
+  .stat-divider { width: 1px; background: var(--border); margin: 0 auto; }
+
+  /* ── CTA ── */
+  .cta {
+    padding: 140px 0; text-align: center;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, #0d0d14 50%, var(--bg-dark) 100%);
+    position: relative; overflow: hidden;
+  }
+  .cta::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(192,57,43,0.15) 0%, transparent 70%);
+  }
+  .cta h2 {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: clamp(40px, 6vw, 72px); color: #fff;
+    letter-spacing: 8px; margin-bottom: 16px; position: relative;
+  }
+  .cta p { font-size: 16px; color: rgba(232,224,208,0.5); letter-spacing: 4px; margin-bottom: 48px; position: relative; }
+  .cta-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 40px 0; background: var(--bg-dark);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  footer p { font-size: 12px; color: rgba(232,224,208,0.3); letter-spacing: 2px; }
+
+  /* ── Animations ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(10px); }
+  }
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .section-reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+  .section-reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .feat-grid { grid-template-columns: 1fr 1fr; }
+    .show-grid { grid-template-columns: 1fr; }
+    .class-grid { grid-template-columns: 1fr 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .feat-grid, .class-grid, .stats-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
-    </section>
+<!-- Particles -->
+<div id="particles"></div>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Nav -->
+<nav id="navbar">
+  <div class="logo">传奇<em>世界</em></div>
+  <ul class="nav-links">
+    <li><a href="#features">游戏特色</a></li>
+    <li><a href="#showcase">精彩截图</a></li>
+    <li><a href="#classes">职业介绍</a></li>
+    <li><a href="#stats">数据统计</a></li>
+  </ul>
+  <a href="#cta" class="btn-nav">开始游戏</a>
+</nav>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">★★★★★ 经典端游改编</div>
+    <h1 class="hero-title">传奇</h1>
+    <p class="hero-sub">再续玛法大陆 · 热血重燃</p>
+    <p class="hero-desc">万人同屏 · 自由交易 · 经典战法道 · 重温兄弟情谊</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">立即下载</a>
+      <a href="#features" class="btn-ghost">了解更多</a>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
+<!-- Features -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-title section-reveal">
+      <span class="section-tag">FEATURES</span>
+      <h2>经典传承 · 热血创新</h2>
+      <p>复刻经典玩法，融入现代设计，打造原汁原味的传奇体验</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card section-reveal">
+        <div class="feat-icon">⚔️</div>
+        <h3>万人攻沙</h3>
+        <p>超大地图自由PK，百人同屏攻城战，刀光剑影中体验极致热血，感受兄弟并肩作战的激情岁月。</p>
+      </div>
+      <div class="feat-card section-reveal">
+        <div class="feat-icon">🎯</div>
+        <h3>自由交易</h3>
+        <p>装备全靠打，金币全靠赚，全开放自由交易市场，摆摊、拍卖、面对面交易，零绑定的真实经济体系。</p>
+      </div>
+      <div class="feat-card section-reveal">
+        <div class="feat-icon">🔥</div>
+        <h3>经典战法道</h3>
+        <p>战士近战爆发、法师远程群攻、道士召唤神兽，三大职业相生相克，千变万化的技能组合让战斗充满策略。</p>
+      </div>
+      <div class="feat-card section-reveal">
+        <div class="feat-icon">💎</div>
+        <h3>稀有装备</h3>
+        <p>屠龙、嗜魂、炼狱等经典神装重现，BOSS掉落全靠运气，打到即是赚到，极品装备让你一夜暴富。</p>
+      </div>
+      <div class="feat-card section-reveal">
+        <div class="feat-icon">🏰</div>
+        <h3>行会争雄</h3>
+        <p>建立行会、招募兄弟、占领沙城，享受万人之上的荣耀与权力。行会战、领地战让你的传奇之路不再孤单。</p>
+      </div>
+      <div class="feat-card section-reveal">
+        <div class="feat-icon">📱</div>
+        <h3>多端畅玩</h3>
+        <p>PC与移动端数据互通，随时随地无缝切换。无论在电脑前还是手机旁，玛法大陆永远为你敞开大门。</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
+<!-- Showcase -->
+<section class="showcase" id="showcase">
+  <div class="container">
+    <div class="section-title section-reveal">
+      <span class="section-tag">SCREENSHOTS</span>
+      <h2>视觉盛宴 · 热血战场</h2>
+      <p>每一帧都是燃烧的青春记忆</p>
+    </div>
+    <div class="show-grid">
+      <div class="show-card section-reveal">
+        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80" alt="攻城战">
+        <div class="show-card-info">
+          <h3>沙巴克攻城战</h3>
+          <p>万人同屏 · 热血沸腾 · 兄弟齐心</p>
         </div>
-    </footer>
+        <div class="show-card-tag">战斗</div>
+      </div>
+      <div class="show-card section-reveal">
+        <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800&q=80" alt="野外PK">
+        <div class="show-card-info">
+          <h3>野外自由PK</h3>
+          <p>红名惩罚 · 装备掉落 · 极致对抗</p>
+        </div>
+        <div class="show-card-tag">PVP</div>
+      </div>
+      <div class="show-card section-reveal">
+        <img src="https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=800&q=80" alt="神装展示">
+        <div class="show-card-info">
+          <h3>神装收集</h3>
+          <p>屠龙嗜魂 · 稀有外观 · 全服瞩目</p>
+        </div>
+        <div class="show-card-tag">收集</div>
+      </div>
+      <div class="show-card section-reveal">
+        <img src="https://images.unsplash.com/photo-1598550476439-c94c2cb3119f?w=800&q=80" alt="兄弟情谊">
+        <div class="show-card-info">
+          <h3>兄弟情谊</h3>
+          <p>行会聚餐 · 并肩作战 · 传奇不散</p>
+        </div>
+        <div class="show-card-tag">社交</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
+<!-- Classes -->
+<section class="classes" id="classes">
+  <div class="container">
+    <div class="section-title section-reveal">
+      <span class="section-tag">CLASSES</span>
+      <h2>三大职业 · 各领风骚</h2>
+      <p>选择你的命运，书写属于你的传奇</p>
+    </div>
+    <div class="class-grid">
+      <div class="class-card section-reveal">
+        <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20?w=400&q=80" alt="战士">
+        <div class="class-info">
+          <h3>战士</h3>
+          <p>近战之王，生命顽强。<br>烈火剑法、逐日剑法<br>一夫当关，万夫莫开</p>
+        </div>
+      </div>
+      <div class="class-card section-reveal">
+        <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&q=80" alt="法师">
+        <div class="class-info">
+          <h3>法师</h3>
+          <p>元素掌控，群体绞杀。<br>冰咆哮、流星火雨<br>掌控天地之力</p>
+        </div>
+      </div>
+      <div class="class-card section-reveal">
+        <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400&q=80" alt="道士">
+        <div class="class-info">
+          <h3>道士</h3>
+          <p>召唤神兽，辅助为王。<br>召唤神兽、治愈术<br>攻防兼备，以柔克刚</p>
+        </div>
+      </div>
+      <div class="class-card section-reveal">
+        <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?w=400&q=80" alt="刺客">
+        <div class="class-info">
+          <h3>刺客</h3>
+          <p>隐匿暗杀，一击必杀。<br>影袭、致命毒药<br>来无影，去无踪</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats" id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item section-reveal">
+        <h3>2000<span style="font-size:28px">万</span></h3>
+        <p>累计注册玩家</p>
+      </div>
+      <div class="stat-item section-reveal">
+        <h3>500<span style="font-size:28px">+</span></h3>
+        <p>服务器承载峰值</p>
+      </div>
+      <div class="stat-item section-reveal">
+        <h3>20<span style="font-size:28px">年</span></h3>
+        <p>经典传承历程</p>
+      </div>
+      <div class="stat-item section-reveal">
+        <h3>99<span style="font-size:28px">%</span></h3>
+        <p>玩家好评率</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="container">
+    <div class="section-reveal">
+      <h2>你的传奇 · 从这里开始</h2>
+      <p>无需下载 · 即开即玩 · 完全免费</p>
+      <div class="cta-btns">
+        <a href="#" class="btn-primary" onclick="alert('即将开放，敬请期待！'); return false;">🖥️ PC端下载</a>
+        <a href="#" class="btn-ghost" onclick="alert('即将开放，敬请期待！'); return false;">📱 手机端下载</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>© 2026 传奇世界 · 玛法大陆 · 热血不灭，传奇永存</p>
+  </div>
+</footer>
+
+<script>
+  // ── Particles ──
+  const pc = document.getElementById('particles');
+  for (let i = 0; i < 40; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (4 + Math.random() * 6) + 's';
+    p.style.animationDelay = Math.random() * 6 + 's';
+    p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+    pc.appendChild(p);
+  }
+
+  // ── Nav scroll ──
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── Scroll reveal ──
+  const reveals = document.querySelectorAll('.section-reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => io.observe(el));
+
+  // ── Smooth scroll ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // ── Counter ──
+  function countUp(el, target) {
+    let cur = 0;
+    const step = target / 60;
+    const iv = setInterval(() => {
+      cur = Math.min(cur + step, target);
+      el.textContent = Math.floor(cur).toLocaleString();
+      if (cur >= target) clearInterval(iv);
+    }, 16);
+  }
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('h3').forEach(h => {
+          const txt = h.textContent;
+          const num = parseInt(txt.replace(/[^\d]/g, ''));
+          if (num) { h.textContent = '0'; countUp(h, num); }
         });
+        statObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stats-grid').forEach(g => statObserver.observe(g));
+</script>
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
 </body>
-
 </html>
